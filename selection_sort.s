@@ -1,11 +1,11 @@
 
-addi x10, x0, 0x100
+addi x10, x0, 0x000
 addi x14, x0, 15
-sw x14, 0(x10)
+sd x14, 0(x10)
 addi x14, x0, 83
-sw x14, 4(x10)
+sd x14, 8(x10)
 addi x14, x0, 6
-sw x14, 8(x10)
+sd x14, 16(x10)
 addi x11, x0, 3
 
 beq x0,x0,selectionSort
@@ -25,24 +25,24 @@ beq x0,x0, EndFori
 addi x30, x0,0 #stores memory address based on data type
 
 Fori:
-  slli x30, x6, 2 #shifting by 2 bcs it’s a word array
+  slli x30, x6, 3 #multiplying by 8, since array is of type doubleword
   add x30,x30,x10
-  lw x18, 0(x30)
+  ld x18, 0(x30)
   add x28,x0,x6 # j = i
   blt x28, x29, Forj #--> change
   beq x0,x0, EndForj
   addi x31, x0,0
 
 Forj:
-slli x31,x28,2
+slli x31,x28, 3
 add x31,x31,x10
-lw x19, 0(x31)
+ld x19, 0(x31)
 blt x19,x18, IF #--> change
 beq x0,x0, ENDIF
 
 IF:
-sw x19, 0(x30)
-sw x18, 0(x31)
+sd x19, 0(x30)
+sd x18, 0(x31)
 beq x0,x0,ENDIF
 
 ENDIF:
@@ -57,14 +57,3 @@ EndFori:
 beq x0,x0,return
 
 END:
-
-
-
-
-
-
-
- 
-
-
- 
