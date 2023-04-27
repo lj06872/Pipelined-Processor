@@ -37,6 +37,7 @@ Forj:
 slli x31,x28, 3
 add x31,x31,x10
 ld x19, 0(x31)
+ld x18, 0(x30)
 blt x19,x18, IF #--> change
 beq x0,x0, ENDIF
 
